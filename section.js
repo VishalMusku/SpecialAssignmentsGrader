@@ -31,7 +31,9 @@ function showUploadRoster() {
 
 function showUploadAssignmentGrade() {
     hideAllSections();
+   
     document.getElementById('uploadAssignmentGrade').style.display = 'block';
+    
 }
 
 function hideAllSections() {
@@ -90,10 +92,10 @@ function uploadRoster() {
                 firstName: row['First Name'],
                 lastName: row['Last Name'],
                 soonerId: row['Sooner ID'],
-                email: row['Email'].toLowerCase()
+                email: row['Email'].toLowerCase() // Email is lowercased here
             }));
             saveRoster();
-            displayUploadedRoster(jsonData);
+            displayUploadedRoster(roster);
             alert('Roster uploaded successfully!');
         });
     }
@@ -212,9 +214,14 @@ function addNewAssignmentUpload() {
     newUpload.className = 'assignment-upload';
     newUpload.innerHTML = `
         <input type="file" accept=".csv, .xlsx">
-        <button onclick="uploadAssignmentGrade(this)">Upload</button>
+        <button onclick="uploadAssignmentGrade(this)" class="upload-btn">Upload</button>
+        <button onclick="removeAssignmentUpload(this)" class="cancel-btn">✖</button>
     `;
     assignmentUploads.appendChild(newUpload);
+}
+
+function removeAssignmentUpload(button) {
+    button.closest('.assignment-upload').remove();
 }
 
 function showProcessData() {
@@ -223,7 +230,11 @@ function showProcessData() {
 }
 
 function processAndDisplayData() {
+
+    showProcessData() 
+    
     console.log("Starting data processing...");
+
 
     if (!roster || !roster.length) {
         console.error("Roster is empty or undefined");
@@ -260,7 +271,7 @@ function processAndDisplayData() {
                 lastName: rosterEntry.lastName || 'Unknown',
                 email: rosterEntry.email,
                 soonerId: rosterEntry.soonerId,
-                grade: gradeEntry.Grade ? (parseFloat(gradeEntry.Grade) * 10).toFixed(2) : 'N/A'
+                grade: gradeEntry.Grade ? (parseFloat(gradeEntry.Grade) * 10).toFixed(2) : '0'
             };
         }
         return null;
@@ -296,7 +307,7 @@ function processAndDisplayData() {
 
 function displayProcessedData(data) {
     const processedDataElement = document.getElementById('processedDataContent');
-    processedDataElement.innerHTML = '<h3>Processed Data</h3>';
+    processedDataElement.innerHTML = '<h2>Processed Data</h2>';
     const table = createTable(['S.No.', 'SIS User ID', 'Student Name', 'First Name', 'Last Name', 'Email', 'Grade'], 
         data.map((row, index) => [
             index + 1, 

@@ -7,8 +7,9 @@ body {
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 h1, h2 {
@@ -20,7 +21,7 @@ input[type="password"],
 input[type="file"],
 button {
     display: block;
-    width: 100%;
+    width: 30%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #bdc3c7;
@@ -158,4 +159,63 @@ button:hover {
 
 .data-table tr:hover {
     background-color: #f5f5f5;
+}
+
+/* Add this to your CSS file */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px; /* Adds space between buttons */
+}
+
+/* Add or modify this in your CSS file */
+.upload-btn, button[type="button"] {
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+/* Add this to your CSS file */
+.cancel-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.cancel-btn:hover {
+    background-color: #f56060;
+}
+
+.assignment-upload {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Make the file input (Choose File button) smaller */
+input[type="file"] {
+    font-size: 15px;
+    padding: 4px;
+}
+
+/* Make the Upload button smaller */
+button.upload-btn, 
+button[type="button"] {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+/* Adjust the container for these elements if needed */
+.assignment-upload {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
 }

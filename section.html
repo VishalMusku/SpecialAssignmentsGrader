@@ -10,11 +10,12 @@
     <div class="layout">
         <div class="sidebar">
             <h2 id="sectionTitle"></h2>
-            <button onclick="showUploadStudentList()">Upload Student List</button>
-            <button onclick="showUploadRoster()">Upload Roster</button>
-            <button onclick="showUploadAssignmentGrade()">Upload Assignment Grade</button>
-            <button onclick="addNewAssignmentUpload()">Add New Assignment</button>
-            <button onclick="showProcessData()">Process Data</button>
+            <button onclick="showUploadStudentList()">Upload Canvas Student List</button>
+            <button onclick="showUploadRoster()">Upload Canvas Roster</button>
+            <button onclick="showUploadAssignmentGrade()">Upload Special Assignment </button>
+            <!-- <button onclick="addNewAssignmentUpload()">Add New Assignment</button> -->
+            <!-- <button onclick="showProcessData()">Process Data</button> -->
+            <button onclick="processAndDisplayData()">Process</button>
         </div>
         <div class="main-content">
             <div id="uploadStudentList" class="content-section">
@@ -30,9 +31,10 @@
                 <div id="rosterContent"></div>
             </div>
             <div id="uploadAssignmentGrade" class="content-section">
-                <h2>Upload Assignment Grade</h2>
+                <h2>Upload Special Assignment Grade</h2>
                 <div id="assignmentUploads">
-                    <div class="assignment-upload">
+                    <!-- <div class="assignment-upload"> -->
+                    <div class="">
                         <input type="file" accept=".csv, .xlsx">
                         <button onclick="uploadAssignmentGrade(this)">Upload</button>
                     </div>
@@ -40,21 +42,20 @@
                 <div id="assignmentGradeContent"></div>
             </div>
             <div id="processData" class="content-section">
-                <h2>Process Data</h2>
-                <button onclick="processAndDisplayData()">Process</button>
+                
                 <div id="processedDataContent"></div>
             </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="section.js"></script>
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Your existing initialization code here
-            
+            hideAllSections();
             // Add this line to make the Process Data section visible by default
             document.getElementById('processData').style.display = 'block';
         });
-    </script>
+    </script> -->
 </body>
 </html>
