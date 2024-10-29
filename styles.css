@@ -219,3 +219,20 @@ button[type="button"] {
     gap: 5px;
     margin-bottom: 5px;
 }
+
+#processedDataTable th {
+    cursor: pointer;
+    position: relative;
+}
+
+#processedDataTable th:hover::after {
+    content: '🔽';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#processedDataTable th:active {
+    background-color: #e0e0e0;
+}

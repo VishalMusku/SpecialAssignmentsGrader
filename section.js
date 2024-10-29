@@ -92,7 +92,7 @@ function uploadRoster() {
                 firstName: row['First Name'],
                 lastName: row['Last Name'],
                 soonerId: row['Sooner ID'],
-                email: row['Email'].toLowerCase() // Email is lowercased here
+                email: row['Email Address'].toLowerCase() // Email is lowercased here
             }));
             saveRoster();
             displayUploadedRoster(roster);
@@ -308,17 +308,46 @@ function processAndDisplayData() {
 function displayProcessedData(data) {
     const processedDataElement = document.getElementById('processedDataContent');
     processedDataElement.innerHTML = '<h2>Processed Data</h2>';
-    const table = createTable(['S.No.', 'SIS User ID', 'Student Name', 'First Name', 'Last Name', 'Email', 'Grade'], 
-        data.map((row, index) => [
-            index + 1, 
-            row.sisUserId,
-            row.studentName,
-            row.firstName,
-            row.lastName,
-            row.email,
-            row.grade
-        ]));
+    
+    const table = document.createElement('table');
+    table.id = 'processedDataTable';
+    table.className = 'data-table';
+
+    // Create header row
+    const headerRow = table.insertRow();
+    const headers = ['S.No.', 'SIS User ID', 'Student Name', 'First Name', 'Last Name', 'Email', 'Grade'];
+    headers.forEach((header, index) => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        th.onclick = () => toggleColumn(index);
+        headerRow.appendChild(th);
+    });
+
+    // Populate data rows
+    data.forEach((row, index) => {
+        const dataRow = table.insertRow();
+        [index + 1, row.sisUserId, row.studentName, row.firstName, row.lastName, row.email, row.grade].forEach(cellData => {
+            const cell = dataRow.insertCell();
+            cell.textContent = cellData;
+        });
+    });
+
     processedDataElement.appendChild(table);
+}
+
+function toggleColumn(columnIndex) {
+    const table = document.getElementById('processedDataTable');
+    const gradeColumnIndex = table.rows[0].cells.length - 1;
+
+    for (let i = 0; i < table.rows.length; i++) {
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+            if (j === columnIndex || j === gradeColumnIndex) {
+                table.rows[i].cells[j].style.display = '';
+            } else {
+                table.rows[i].cells[j].style.display = 'none';
+            }
+        }
+    }
 }
 
 function loadAssignmentGrades() {

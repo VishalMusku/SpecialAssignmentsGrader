@@ -1,7 +1,9 @@
-// Hardcoded user credentials (for demonstration only)
+
 const users = [
-    { username: "admin", password: "password123" },
-    { username: "v", password: "v" }
+    { username: "jaron", password: "82" },
+    { username: "v", password: "v" },
+    { username: "amin", password: "amin" },
+
 ];
 
 document.addEventListener('DOMContentLoaded', function() {
